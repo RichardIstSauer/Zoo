@@ -21,7 +21,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo"<table style='width: 30%'><tr><th>Gebäude</th></tr>";
+echo"<table style='width: 20%'><tr><th>Gebäude</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {

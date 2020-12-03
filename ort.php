@@ -22,7 +22,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo"<table style='width: 30%'><tr><th>Ort</th><th>PLZ</th></tr>";
+echo"<table style='width: 20%'><tr><th>Ort</th><th>PLZ</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {

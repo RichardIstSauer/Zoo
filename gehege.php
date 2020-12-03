@@ -9,46 +9,57 @@ echo"<style>
   border: 1px solid black;
   border-collapse: collapse;
   }
-</style>";
+  </style>";
 
-echo "<h1>Pfleger</h1>";
-$query = "SELECT `gehege`,`nachname`,`geburtsdatum`,`adresse`,`telefonnummer`,`plz` FROM `pfleger`";
+echo "<h1>Gehege</h1>";
+$query = "SELECT gehege.gehege, gebaeude.gebaeude FROM gehege, gebaeude WHERE gebaeude.geb_id = gehege.geb_id";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
 
-while ($row = mysqli_fetch_array($result)) {
-  $vornamePfleger[] = $row['vorname'];
-  $nachnamePfleger[] = $row['nachname'];
-  $gebdatPfleger[] = $row['geburtsdatum'];
-  $adressePfleger[] = $row['adresse'];
-  $telefonnummerPflege[] = $row['telefonnummer'];
-  $plzPfleger [] = $row['plz'];
+
+while ($row = mysqli_fetch_array($result))
+{
+  $gehege[] = $row['gehege'];
+  $gebaeude[] = $row['gebaeude'];
 }
 
 
-echo"<table style='width: 30%'><tr><th>Vorname</th><th>Nachname</th><th>Geburtsdatum</th><th>Telefonnummer</th><th>Adresse</th><th>PLZ</th></tr>";
+echo"<table style='width: 30%'><tr><th>Gehege</th><th>Gebäude</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {
   echo"<tr>";
-  echo "<td>$vornamePfleger[$i]</td>";
-  echo "<td>$nachnamePfleger[$i]</td>";
-  echo "<td>$gebdatPfleger[$i]</td>";
-  echo "<td>$adressePfleger[$i]</td>";
-  echo "<td>$telefonnummerPflege[$i]</td>";
-  echo "<td>$plzPfleger[$i]</td>";
+  echo "<td>$gehege[$i]</td>";
+  echo "<td>$gebaeude[$i]</td>";
   echo"</tr>";
 }
 echo"</table>";
 
+$query = "SELECT gebaeude FROM gebaeude";
+$result = mysqli_query($conn, $query);
+$count = mysqli_num_rows($result);
+
+while ($row = mysqli_fetch_array($result))
+{
+  $gebaeudeAuswahl[] = $row['gebaeude'];
+}
+
 ?>
 
 <html>
-
 <h1>Gehege hinzufügen</h1>
 <form method="post">
 <label>Gehege: </label><br>
-<input type="text" name="gehegeName" ></input><br>
+<input type="text" name="gehegeName" ></input><br><br>
+<label>Gebäude: </label><br>
+<select name="gebaeudeSelect">
+<?php
+for ($i = 0; $i < $count; $i ++)
+{
+  echo "<option>".$gebaeudeAuswahl[$i]."</option>";
+}
+?>
+</select><br><br> 
 <button type="submit" name="speichern_gehege" >Speichern</button> 
 </form>
 
@@ -57,7 +68,17 @@ echo"</table>";
 <?php
 if (isset($_POST["speichern_gehege"]))
 {
-  $sql = "INSERT INTO gehege (gehege, adresse, plz, ansprechpartner) VALUES ('".$_POST["lieferantname"]."', '".$_POST["adresse_lieferant"]."', '".$_POST["plz_lieferant"]."', '".$_POST["ansprechpartner"]."')";
+  $value = $_POST["gebaeudeSelect"];
+  $sql = "SELECT gebaeude.geb_id FROM gebaeude WHERE gebaeude='$value'";
+  $result = mysqli_query($conn, $query);
+  $count = mysqli_num_rows($result);
+
+  while ($row = mysqli_fetch_array($result))
+  {
+  $gebaeudeAuswahlID = $row['geb_id'];
+  }
+
+  $sql = "INSERT INTO gehege (gehege, gehege.geb_id) VALUES ('$_POST[gehegeName]', '$gebaeudeAuswahlID')";
   if ($conn->query($sql) == FALSE)
   {
   echo "Fehler beim Einfügen: " . $conn->error;

@@ -26,7 +26,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo"<table style='width: 30%'><tr><th>Vorname</th><th>Nachname</th><th>Geburtsdatum</th><th>Telefonnummer</th><th>Adresse</th><th>PLZ</th></tr>";
+echo"<table style='width: 50%'><tr><th>Vorname</th><th>Nachname</th><th>Geburtsdatum</th><th>Telefonnummer</th><th>Adresse</th><th>PLZ</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {
@@ -34,8 +34,8 @@ for ($i = 0; $i < $count; $i++)
   echo "<td>$vornamePfleger[$i]</td>";
   echo "<td>$nachnamePfleger[$i]</td>";
   echo "<td>$gebdatPfleger[$i]</td>";
-  echo "<td>$adressePfleger[$i]</td>";
   echo "<td>$telefonnummerPflege[$i]</td>";
+  echo "<td>$adressePfleger[$i]</td>";
   echo "<td>$plzPfleger[$i]</td>";
   echo"</tr>";
 }

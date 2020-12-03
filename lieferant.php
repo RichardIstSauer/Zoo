@@ -12,7 +12,7 @@ echo"<style>
 </style>";
 
 echo "<h1>Lieferant</h1>";
-$query = "SELECT `lieferant`,`ansprechpartner`,`telefonnummer`,`adresse`,`plz` FROM `lieferant`";
+$query = "SELECT  lieferant , ansprechpartner , telefonnummer , adresse , plz  FROM  lieferant";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
 
@@ -25,7 +25,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo"<table style='width: 30%'><tr><th>Lieferant</th><th>Ansprechpartner</th><th>Telefonnummer</th><th>Adresse</th><th>PLZ</th></tr>";
+echo"<table style='width: 50%'><tr><th>Lieferant</th><th>Ansprechpartner</th><th>Telefonnummer</th><th>Adresse</th><th>PLZ</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {
@@ -47,12 +47,14 @@ echo"</table>";
 <form method="post">
 <label>Lieferant: </label><br>
 <input type="text" name="lieferantname" ></input><br>
+<label>Ansprechpartner: </label><br>
+<input type="text" name="ansprechpartner" ></input><br>
+<label>Telefonnummer: </label><br>
+<input type="text" name="telefonnummer_lieferant" ></input><br>
 <label>Adresse: </label><br>
 <input type="text" name="adresse_lieferant" ></input><br>
 <label>PLZ: </label><br>
-<input type="text" name="plz_lieferant" ></input><br>
-<label>Ansprechpartner: </label><br>
-<input type="text" name="ansprechpartner" ></input><br><br>
+<input type="text" name="plz_lieferant" ></input><br><br>
 <button type="submit" name="speichern_lieferant" >Speichern</button> 
 </form>
 
@@ -63,7 +65,7 @@ echo"</table>";
 
 if (isset($_POST["speichern_lieferant"]))
 {
-  $sql = "INSERT INTO lieferant (lieferant, adresse, plz, ansprechpartner) VALUES ('".$_POST["lieferantname"]."', '".$_POST["adresse_lieferant"]."', '".$_POST["plz_lieferant"]."', '".$_POST["ansprechpartner"]."')";
+  $sql = "INSERT INTO lieferant (lieferant, adresse, plz, ansprechpartner) VALUES ('".$_POST["lieferantname"]."', '".$_POST["adresse_lieferant"]."', '".$_POST["plz_lieferant"]."', '".$_POST["ansprechpartner"]."', '".$_POST["telefonnummer_lieferant"]."')";
   if ($conn->query($sql) == FALSE)
   {
   echo "Fehler beim Einfügen: " . $conn->error;
