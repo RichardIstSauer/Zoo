@@ -5,7 +5,7 @@ echo "<link rel='stylesheet' href='styles.css'>";
 echo "<script> if ( window.history.replaceState ) {window.history.replaceState( null, null, window.location.href ); } </script>";
 
 echo "<div class=wrapper>";
-echo "<h1>Pfleger</h1>";
+echo "<h1>Tiere</h1>";
 $query = "SELECT `vorname`,`nachname`,`geburtsdatum`,`adresse`,`telefonnummer`,`plz` FROM `pfleger`";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);

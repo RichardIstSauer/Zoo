@@ -1,16 +1,10 @@
 <?php
 include "connection.php";
 include "navbar.php";
+echo "<link rel='stylesheet' href='styles.css'>";
+echo "<script> if ( window.history.replaceState ) {window.history.replaceState( null, null, window.location.href ); } </script>";
 
-echo"<style>
-  table, th, td
-  {
-  width: fit-content;
-  border: 1px solid black;
-  border-collapse: collapse;
-  }
-</style>";
-
+echo "<div class=wrapper>";
 echo "<h1>Lieferant</h1>";
 $query = "SELECT  lieferant , ansprechpartner , telefonnummer , adresse , plz  FROM  lieferant";
 $result = mysqli_query($conn, $query);
@@ -25,7 +19,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo"<table style='width: 50%'><tr><th>Lieferant</th><th>Ansprechpartner</th><th>Telefonnummer</th><th>Adresse</th><th>PLZ</th></tr>";
+echo"<table ><tr><th>Lieferant</th><th>Ansprechpartner</th><th>Telefonnummer</th><th>Adresse</th><th>PLZ</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {
@@ -38,6 +32,18 @@ for ($i = 0; $i < $count; $i++)
   echo"</tr>";
 }
 echo"</table>";
+
+$query = "SELECT * FROM ort";
+$result = mysqli_query($conn, $query);
+$count = mysqli_num_rows($result);
+
+while ($row = mysqli_fetch_array($result)) {
+  $plzLieferantDrop [] = $row['plz'];
+  $ortLieferantDrop [] = $row['ort'];
+  
+}
+
+
 
 ?>
 
@@ -54,7 +60,14 @@ echo"</table>";
 <label>Adresse: </label><br>
 <input type="text" name="adresse_lieferant" ></input><br>
 <label>PLZ: </label><br>
-<input type="text" name="plz_lieferant" ></input><br><br>
+<select name=plzLieferantSelect>
+<?php
+for ($i = 0; $i < $count; $i++)
+{
+  echo "<option value='$plzLieferantDrop[$i]'>$plzLieferantDrop[$i] - $ortLieferantDrop[$i]</option>";
+}
+?> 
+</select><br><br>
 <button type="submit" name="speichern_lieferant" >Speichern</button> 
 </form>
 
@@ -65,11 +78,12 @@ echo"</table>";
 
 if (isset($_POST["speichern_lieferant"]))
 {
-  $sql = "INSERT INTO lieferant (lieferant, adresse, plz, ansprechpartner) VALUES ('".$_POST["lieferantname"]."', '".$_POST["adresse_lieferant"]."', '".$_POST["plz_lieferant"]."', '".$_POST["ansprechpartner"]."', '".$_POST["telefonnummer_lieferant"]."')";
+  $sql = "INSERT INTO lieferant (lieferant, adresse, plz, ansprechpartner, telefonnummer) VALUES ('$_POST[lieferantname]', '$_POST[adresse_lieferant]',' $_POST[plzLieferantSelect]', '$_POST[ansprechpartner]',' $_POST[telefonnummer_lieferant]')";
   if ($conn->query($sql) == FALSE)
   {
   echo "Fehler beim Einfügen: " . $conn->error;
   }
 }
 
-
+echo "</div>"
+?>

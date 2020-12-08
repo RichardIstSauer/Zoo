@@ -1,16 +1,10 @@
 <?php
 include "connection.php";
 include "navbar.php";
+echo "<link rel='stylesheet' href='styles.css'>";
+echo "<script> if ( window.history.replaceState ) {window.history.replaceState( null, null, window.location.href ); } </script>";
 
-echo"<style>
-  table, th, td
-  {
-  width: fit-content;
-  border: 1px solid black;
-  border-collapse: collapse;
-  }
-</style>";
-
+echo "<div class=wrapper>";
 echo "<h1>Orte</h1>";
 $query = "SELECT `ort`,`plz` FROM `ort`";
 $result = mysqli_query($conn, $query);
@@ -53,11 +47,13 @@ echo"</table>";
 
 if (isset($_POST["speichern_ort"]))
 {
-  $sql = "INSERT INTO ort (ort, plz) values ('".$_POST["ort"]."','".$_POST["plz_ort"]."')";
+  $sql = "INSERT INTO ort (ort, plz) values ('$_POST[ort]','$_POST[plz_ort]')";
   if ($conn->query($sql) == FALSE)
   {
   echo "Fehler beim Einfügen: " . $conn->error;
   }
 }
 
+
+echo "</div>"
 ?>

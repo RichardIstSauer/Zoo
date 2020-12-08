@@ -1,47 +1,21 @@
 <html>
 <head>
-<style>
-
-ul
-{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li
-{
-    display: inline;
-}
-
-li a 
-{
-  /* display: block; */
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-
-</style>
-
+<link rel='stylesheet' href='styles.css'>
 
 </head>
 
 <body>
 
-<ul>
-<li><a href="index.php">Home</a></li>
-<li><a href="pfleger.php">Pfleger</a></li>
-<li><a href="ort.php">Ort</a></li>
-<li><a href="revier.php">Revier</a></li>
-<li><a href="gehege.php">Gehege</a></li>
-<li><a href="gebaeude.php">Gebäude</a></li>
-<li><a href="lieferant.php">Lieferant</a></li>
-</ul>
+<div class="nav">
+<a href="index.php">Home</a>
+<a href="pfleger.php">Pfleger</a>
+<a href="ort.php">Ort</a>
+<a href="revier.php">Revier</a>
+<a href="gehege.php">Gehege</a>
+<a href="gebaeude.php">Gebäude</a>
+<a href="lieferant.php">Lieferant</a>
+<a href="tiere.php">Lieferant</a>
+</div>
 
 
 </body>

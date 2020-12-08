@@ -1,16 +1,10 @@
 <?php
 include "connection.php";
 include "navbar.php";
+echo "<link rel='stylesheet' href='styles.css'>";
+echo "<script> if ( window.history.replaceState ) {window.history.replaceState( null, null, window.location.href ); } </script>";
 
-echo"<style>
-  table, th, td
-  {
-  width: fit-content;
-  border: 1px solid black;
-  border-collapse: collapse;
-  }
-</style>";
-
+echo "<div class=wrapper>";
 echo "<h1>Gebäude</h1>";
 $query = "SELECT `gebaeude` FROM `gebaeude`";
 $result = mysqli_query($conn, $query);
@@ -48,10 +42,11 @@ echo"</table>";
 <?php
 if (isset($_POST["speichern_gebaeude"]))
 {
-  $sql = "INSERT INTO gebaeude (gebaeude) VALUES ('".$_POST["lieferantname"]."')";
+  $sql = "INSERT INTO gebaeude (gebaeude) VALUES ('$_POST[gebaeudeName]')";
   if ($conn->query($sql) == FALSE)
   {
   echo "Fehler beim Einfügen: " . $conn->error;
   }
 }
+echo "</div>"
 ?>
