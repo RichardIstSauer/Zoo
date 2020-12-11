@@ -28,7 +28,7 @@ for ($i = 0; $i < $count; $i++)
   echo "<td>$vornamePfleger[$i]</td>";
   echo "<td>$nachnamePfleger[$i]</td>";
   echo "<td>$gebdatPfleger[$i]</td>";
-  echo "<td>$telefonnummerPflege[$i]</td>";
+  echo "<td>$telefonnummerPfleger[$i]</td>";
   echo "<td>$adressePfleger[$i]</td>";
   echo "<td>$plzPfleger[$i]</td>";
   echo"</tr>";
