@@ -15,7 +15,7 @@ while ($row = mysqli_fetch_array($result)) {
   $nachnamePfleger[] = $row['nachname'];
   $gebdatPfleger[] = $row['geburtsdatum'];
   $adressePfleger[] = $row['adresse'];
-  $telefonnummerPflege[] = $row['telefonnummer'];
+  $telefonnummerPfleger[] = $row['telefonnummer'];
   $plzPfleger [] = $row['plz'];
 }
 
