@@ -47,15 +47,15 @@ while ($row = mysqli_fetch_array($result)) {
   
 }
 
-// $query = "SELECT * FROM gehege";
-// $result = mysqli_query($conn, $query);
-// $countGehege = mysqli_num_rows($result);
+$query = "SELECT * FROM gehege";
+$result = mysqli_query($conn, $query);
+$countGehege = mysqli_num_rows($result);
 
-// while ($row = mysqli_fetch_array($result)) {
-//   $gehegeIdDrop [] = $row['g_id'];
-//   $gehegeDrop [] = $row['gehege'];
+while ($row = mysqli_fetch_array($result)) {
+  $gehegeIdDrop [] = $row['g_id'];
+  $gehegeDrop [] = $row['gehege'];
   
-// }
+}
 
 $query = "SELECT * FROM tierart";
 $result = mysqli_query($conn, $query);
@@ -70,7 +70,6 @@ while ($row = mysqli_fetch_array($result)) {
 ?>
 
 <html>
-<!-- tesst -->
 <h1>Tier hinzufügen</h1>
 <form method="post">
 <label>Name:</label><br>
@@ -96,16 +95,6 @@ for ($i = 0; $i < $countRevier; $i++)
 <label>Gehege</label><br>
 <select name="gehegeSelect">
 <?php
-$query = "SELECT * FROM gehege WHERE r_id='$revierSelect'";
-$result = mysqli_query($conn, $query);
-$countGehege = mysqli_num_rows($result);
-
-while ($row = mysqli_fetch_array($result)) {
-  $gehegeIdDrop [] = $row['g_id'];
-  $gehegeDrop [] = $row['gehege'];
-  
-}
-
 for ($i = 0; $i < $countGehege; $i++)
 {
   echo "<option value='$gehegeIdDrop[$i]'>$gehegeDrop[$i]</option>";
