@@ -42,11 +42,20 @@ echo"</table>";
 <?php
 if (isset($_POST["speichern_gebaeude"]))
 {
-  $sql = "INSERT INTO gebaeude (gebaeude) VALUES ('$_POST[gebaeudeName]')";
-  if ($conn->query($sql) == FALSE)
+  if(!empty($_POST['gebaeudeName']))
   {
-  echo "Fehler beim Einfügen: " . $conn->error;
+    $sql = "INSERT INTO gebaeude (gebaeude) VALUES ('$_POST[gebaeudeName]')";
+    if ($conn->query($sql) == FALSE)
+    {
+    echo "Fehler beim Einfügen: " . $conn->error;
+    }
   }
+
+  else
+  {
+    echo "Fehler beim Einfügen: Einige Eingabefelder sind leer";
+  }
+  
 }
 echo "</div>"
 ?>

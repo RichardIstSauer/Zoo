@@ -63,11 +63,19 @@ for ($i = 0; $i < $countGebaeude; $i++)
 <?php
 if (isset($_POST["speichern"]))
 {
-  $sql = "INSERT INTO futter (futter, geb_id) VALUES ('$_POST[futter]','$_POST[gebaeudeSelect]')";
-  if ($conn->query($sql) == FALSE)
+  if(!empty($_POST['futter']) && !empty($_POST['gebaeudeSelect']))
   {
-  echo "Fehler beim Einfügen: " . $conn->error;
+    $sql = "INSERT INTO futter (futter, geb_id) VALUES ('$_POST[futter]','$_POST[gebaeudeSelect]')";
+    if ($conn->query($sql) == FALSE)
+    {
+    echo "Fehler beim Einfügen: " . $conn->error;
+    }
   }
+  else
+  {
+    echo "Fehler beim Einfügen: Einige der Eingabefelder sind leer";
+  }
+  
 }
 
 echo "</div>"

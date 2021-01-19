@@ -116,11 +116,20 @@ for ($i = 0; $i < $countGehege; $i++)
 <?php
 if (isset($_POST["speichern"]))
 {
-  $sql = "INSERT INTO tier (tiername, art_id, r_id, g_id, geschlecht, gebdat) VALUES ('$_POST[name]','$_POST[tierartSelect]','$_POST[revierSelect]','$_POST[gehegeSelect]','$_POST[geschlechtSelect]','$_POST[gebdat]')";
-  if ($conn->query($sql) == FALSE)
+  if (!empty($_POST['name']) && !empty($_POST['tierartSelect']) && !empty($_POST['revierSelect']) && !empty($_POST['gehegeSelect']) && !empty($_POST['geschlechtSelect']) && !empty($_POST['gebdat']))
   {
-  echo "Fehler beim Einfügen: " . $conn->error;
+    $sql = "INSERT INTO tier (tiername, art_id, r_id, g_id, geschlecht, gebdat) VALUES ('$_POST[name]','$_POST[tierartSelect]','$_POST[revierSelect]','$_POST[gehegeSelect]','$_POST[geschlechtSelect]','$_POST[gebdat]')";
+    if ($conn->query($sql) == FALSE)
+    {
+    echo "Fehler beim Einfügen: " . $conn->error;
+    }  
   }
+
+  else
+  {
+    echo "Fehler beim Einfügen: Einige Eingabefelder sind leer";
+  }
+  
 }
 
 echo "</div>"

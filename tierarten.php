@@ -40,11 +40,20 @@ echo"</table>";
 <?php
 if (isset($_POST["speichern"]))
 {
-  $sql = "INSERT INTO tierart (tierart) VALUES ('$_POST[tierart]')";
-  if ($conn->query($sql) == FALSE)
+  if (!empty($_POST['tierart']))
   {
-  echo "Fehler beim Einfügen: " . $conn->error;
+    $sql = "INSERT INTO tierart (tierart) VALUES ('$_POST[tierart]')";
+    if ($conn->query($sql) == FALSE)
+    {
+    echo "Fehler beim Einfügen: " . $conn->error;
+    }
   }
+
+  else
+  {
+    echo "Fehler beim Einfügen: Einige der Eingabefelder sind leer";
+  }
+  
 }
 
 echo "</div>"

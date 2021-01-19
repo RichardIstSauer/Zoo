@@ -42,11 +42,20 @@ echo"</table>";
 <?php
 if (isset($_POST["speichern_revier"]))
 {
-  $sql = "INSERT INTO revier (reviername) VALUES ('$_POST[reviername]')";
-  if ($conn->query($sql) == FALSE)
+  if (!empty($_POST['reviername']))
   {
-  echo "Fehler beim Einfügen: " . $conn->error;
+    $sql = "INSERT INTO revier (reviername) VALUES ('$_POST[reviername]')";
+    if ($conn->query($sql) == FALSE)
+    {
+    echo "Fehler beim Einfügen: " . $conn->error;
+    }
   }
+
+  else
+  {
+    echo "Fehler beim Einfügen: Einige der Eingabefelder sind leer";
+  }
+  
 }
 
 echo "</div>"

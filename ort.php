@@ -47,11 +47,19 @@ echo"</table>";
 
 if (isset($_POST["speichern_ort"]))
 {
-  $sql = "INSERT INTO ort (ort, plz) values ('$_POST[ort]','$_POST[plz_ort]')";
-  if ($conn->query($sql) == FALSE)
+  if (!empty($_POST['ort']) && !empty($_POST['plz_ort']))
   {
-  echo "Fehler beim Einfügen: " . $conn->error;
+    $sql = "INSERT INTO ort (ort, plz) values ('$_POST[ort]','$_POST[plz_ort]')";
+    if ($conn->query($sql) == FALSE)
+    {
+    echo "Fehler beim Einfügen: " . $conn->error;
+    }
   }
+  else
+  {
+    echo "Fehler beim Einfügen: Einige der Eingabefelder sind leer";
+  }
+ 
 }
 
 

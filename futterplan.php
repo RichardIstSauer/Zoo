@@ -92,15 +92,6 @@ for ($i = 0; $i < $countFutter; $i++)
 <option value="g">g</option>
 <option value="kg">kg</option>
 </select><br>
-<label>Futter:</label><br>
-<select name="futterSelect">
-<?php
-for ($i = 0; $i < $countFutter; $i++)
-{
-  echo "<option value='$futterIdDrop[$i]'>$futter[$i]</option>";
-}
-?>
-</select><br>
 <label>Uhrzeit: </label><br>
 <input type="time" name="uhrzeit" ></input><br>
 <label>Wochentag:</label><br>
@@ -120,10 +111,18 @@ for ($i = 0; $i < $countFutter; $i++)
 <?php
 if (isset($_POST["speichern"]))
 {
-  $sql = "INSERT INTO fuetterung (t_id, f_id, menge, einheit, uhrzeit, wochentag) VALUES ('$_POST[tierSelect]','$_POST[futterSelect]','$_POST[menge]','$_POST[einheitSelect]','$_POST[uhrzeit]','$_POST[wochentagSelect]')";
-  if ($conn->query($sql) == FALSE)
+  if (!empty($_POST['tierSelect']) && !empty($_POST['futterSelect']) && !empty($_POST['menge']) && !empty($_POST['einheitSelect']) && !empty($_POST['uhrzeit']) && !empty($_POST['wochentagSelect']))
   {
-  echo "Fehler beim Einfügen: " . $conn->error;
+    $sql = "INSERT INTO fuetterung (t_id, f_id, menge, einheit, uhrzeit, wochentag) VALUES ('$_POST[tierSelect]','$_POST[futterSelect]','$_POST[menge]','$_POST[einheitSelect]','$_POST[uhrzeit]','$_POST[wochentagSelect]')";
+    if ($conn->query($sql) == FALSE)
+    {
+    echo "Fehler beim Einfügen: " . $conn->error;
+    }
+  }
+
+  else 
+  {
+    echo "Fehler beim Einfügen: Einige der Eingabefelder sind leer";
   }
 }
 

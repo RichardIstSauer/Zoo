@@ -63,10 +63,17 @@ for ($i = 0; $i < $count; $i++)
 <?php
 if (isset($_POST["speichern_gehege"]))
 {
-  $sql = "INSERT INTO gehege (gehege, gehege.geb_id) VALUES ('$_POST[gehegeName]', '$_POST[gebaeudeName]')";
-  if ($conn->query($sql) == FALSE)
+  if(!empty($_POST['gehegeName']) && !empty($_POST['gebaeudeName']))
   {
-  echo "Fehler beim Einfügen: " . $conn->error;
+    $sql = "INSERT INTO gehege (gehege, gehege.geb_id) VALUES ('$_POST[gehegeName]', '$_POST[gebaeudeName]')";
+    if ($conn->query($sql) == FALSE)
+    {
+    echo "Fehler beim Einfügen: " . $conn->error;
+    }
+  }
+  else
+  {
+    echo "Fehler beim Einfügen: Einige der Eingabefelder sind leer";
   }
 }
 echo "</div>";

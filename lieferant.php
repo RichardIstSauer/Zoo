@@ -75,10 +75,18 @@ for ($i = 0; $i < $count; $i++)
 <?php
 if (isset($_POST["speichernLieferant"]))
 {
-  $sql = "INSERT INTO lieferant (lieferant, ansprechpartner, telefonnummer, adresse, plz) VALUES ('$_POST[lieferant]','$_POST[ansprechpartner]','$_POST[telefonnummerLieferant]','$_POST[adresseLieferant]','$_POST[plzLieferantSelect]')";
-  if ($conn->query($sql) == FALSE)
+  if (!empty($_POST['lieferant']) && !empty($_POST['ansprechpartner']) && !empty($_POST['telefonnummerLieferant']) && !empty($_POST['adresseLieferant']) && !empty($_POST['plzLieferantSelect']))
   {
-  echo "Fehler beim Einfügen: " . $conn->error;
+    $sql = "INSERT INTO lieferant (lieferant, ansprechpartner, telefonnummer, adresse, plz) VALUES ('$_POST[lieferant]','$_POST[ansprechpartner]','$_POST[telefonnummerLieferant]','$_POST[adresseLieferant]','$_POST[plzLieferantSelect]')";
+    if ($conn->query($sql) == FALSE)
+    {
+    echo "Fehler beim Einfügen: " . $conn->error;
+    }
+  }
+
+  else
+  {
+    echo "Fehler beim Einfügen: Einige Eingabefelder sind leer";
   }
 }
 

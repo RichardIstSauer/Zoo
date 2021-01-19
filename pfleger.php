@@ -78,11 +78,18 @@ for ($i = 0; $i < $count; $i++)
 <?php
 if (isset($_POST["speichern_pfleger"]))
 {
+if (!empty($_POST['vorname']) && !empty($_POST['nachname']) && !empty($_POST['gebdat']) && !empty($_POST['telefonnummer']) && !empty($_POST['adresse']) && !empty($_POST['plzPflegerSelect']))
+{
   $sql = "INSERT INTO pfleger (vorname, nachname, geburtsdatum, telefonnummer, adresse, plz) VALUES ('$_POST[vorname]','$_POST[nachname]','$_POST[gebdat]','$_POST[telefonnummer]','$_POST[adresse]','$_POST[plzPflegerSelect]')";
   if ($conn->query($sql) == FALSE)
   {
   echo "Fehler beim Einfügen: " . $conn->error;
   }
+}
+else
+{
+  echo "Fehler beim Einfügen: Einige der Eingabefelder sind leer";
+}
 }
 
 echo "</div>"
