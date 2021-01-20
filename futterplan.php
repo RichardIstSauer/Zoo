@@ -6,7 +6,7 @@ echo "<script> if ( window.history.replaceState ) {window.history.replaceState( 
 
 echo "<div class=wrapper>";
 echo "<h1>Futterplan</h1>";
-$query = "SELECT tier.tiername, tierart.tierart, revier.reviername, gehege.gehege, futter.futter, fuetterung.menge, fuetterung.einheit, fuetterung.uhrzeit, fuetterung.wochentag FROM revier, gehege, tier, fuetterung, tierart, futter WHERE fuetterung.t_id=tier.t_id AND revier.r_id=tier.r_id AND gehege.g_id=tier.g_id AND tier.art_id=tierart.art_id";
+$query = "SELECT tier.tiername, tierart.tierart, revier.reviername, gehege.gehege, futter.futter, fuetterung.menge, fuetterung.einheit, fuetterung.uhrzeit, fuetterung.wochentag FROM revier, gehege, tier, fuetterung, tierart, futter WHERE fuetterung.t_id=tier.t_id AND revier.r_id=tier.r_id AND gehege.g_id=tier.g_id AND tier.art_id=tierart.art_id AND futter.f_id=fuetterung.f_id";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
 
