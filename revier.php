@@ -33,14 +33,14 @@ echo"</table>";
 <form method="post">
 <label>Reviername: </label><br>
 <input type="text" name="reviername" ></input><br><br>
-<button type="submit" name="speichern_revier" >Speichern</button> 
+<button type="submit" name="speichern" >Speichern</button> 
 </form>
 
 
 </html>
 
 <?php
-if (isset($_POST["speichern_revier"]))
+if (isset($_POST["speichern"]))
 {
   if (!empty($_POST['reviername']))
   {

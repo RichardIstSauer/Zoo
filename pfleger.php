@@ -70,13 +70,13 @@ for ($i = 0; $i < $count; $i++)
 }
 ?> 
 </select><br><br>
-<button type="submit" name="speichern_pfleger" >Speichern</button> 
+<button type="submit" name="speichern" >Speichern</button> 
 </form>
 
 </html>
 
 <?php
-if (isset($_POST["speichern_pfleger"]))
+if (isset($_POST["speichern"]))
 {
 if (!empty($_POST['vorname']) && !empty($_POST['nachname']) && !empty($_POST['gebdat']) && !empty($_POST['telefonnummer']) && !empty($_POST['adresse']) && !empty($_POST['plzPflegerSelect']))
 {

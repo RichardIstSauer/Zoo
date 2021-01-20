@@ -36,7 +36,7 @@ echo"</table>";
 <input type="text" name="ort" ></input><br>
 <label>PLZ: </label><br>
 <input type="number" name="plz_ort" min="01067" max="99999"></input><br><br>
-<button type="submit" name="speichern_ort" >Speichern</button> 
+<button type="submit" name="speichern" >Speichern</button> 
 </form>
 
 </html>
@@ -44,7 +44,7 @@ echo"</table>";
 
 <?php
 
-if (isset($_POST["speichern_ort"]))
+if (isset($_POST["speichern"]))
 {
   if (!empty($_POST['ort']) && !empty($_POST['plz_ort']))
   {

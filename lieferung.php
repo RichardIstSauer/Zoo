@@ -88,12 +88,12 @@ for ($i = 0; $i < $countLieferant; $i++)
 <option value="g">g</option>
 <option value="kg">kg</option>
 </select><br><br>
-<button type="submit" name="speichernLieferant" >Speichern</button> 
+<button type="submit" name="speichern" >Speichern</button> 
 </form>
 </html>
 
 <?php
-if (isset($_POST["speichernLieferant"]))
+if (isset($_POST["speichern"]))
 {
   if (!empty($_POST['futterSelect']) && !empty($_POST['lieferantSelect']) && !empty($_POST['lieferungsdatum']) && !empty($_POST['menge']) && !empty($_POST['einheit']))
   {

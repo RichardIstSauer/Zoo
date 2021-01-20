@@ -55,13 +55,13 @@ for ($i = 0; $i < $count; $i++)
 }
 ?>
 </select><br><br>
-<button name="speichern_gehege" >Speichern</button> 
+<button name="speichern" >Speichern</button> 
 </form>
 
 </html>
 
 <?php
-if (isset($_POST["speichern_gehege"]))
+if (isset($_POST["speichern"]))
 {
   if(!empty($_POST['gehegeName']) && !empty($_POST['gebaeudeName']))
   {

@@ -67,13 +67,13 @@ for ($i = 0; $i < $count; $i++)
 }
 ?> 
 </select><br><br>
-<button type="submit" name="speichernLieferant" >Speichern</button> 
+<button type="submit" name="speichern" >Speichern</button> 
 </form>
 
 </html>
 
 <?php
-if (isset($_POST["speichernLieferant"]))
+if (isset($_POST["speichern"]))
 {
   if (!empty($_POST['lieferant']) && !empty($_POST['ansprechpartner']) && !empty($_POST['telefonnummerLieferant']) && !empty($_POST['adresseLieferant']) && !empty($_POST['plzLieferantSelect']))
   {
