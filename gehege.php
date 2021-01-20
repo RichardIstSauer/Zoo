@@ -35,8 +35,8 @@ $count = mysqli_num_rows($result);
 
 while ($row = mysqli_fetch_array($result))
 {
-  $gebaeude[] = $row['gebaeude'];
-  $gebaeudeID[] = $row['geb_id'];
+  $gebaeudeDrop[] = $row['gebaeude'];
+  $gebaeudeIdDrop[] = $row['geb_id'];
 }
 
 ?>
@@ -51,7 +51,7 @@ while ($row = mysqli_fetch_array($result))
 <?php
 for ($i = 0; $i < $count; $i++)
 {
-  echo "<option value='$gebaeudeID[$i]'>$gebaeude[$i]</option>";
+  echo "<option value='$gebaeudeIdDrop[$i]'>$gebaeudeDrop[$i]</option>";
 }
 ?>
 </select><br><br>

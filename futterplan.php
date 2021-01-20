@@ -42,12 +42,13 @@ for ($i = 0; $i < $count; $i++)
 echo"</table>";
 
 
-$query = "SELECT tier.t_id, tiername, tierart FROM tier, tierart WHERE tier.art_id=tierart.art_id";
+$query = "SELECT tier.t_id, tiername, tierart, gehege.gehege FROM tier, tierart, gehege WHERE tier.art_id=tierart.art_id AND tier.g_id=gehege.g_id";
 $result = mysqli_query($conn, $query);
 $countTier = mysqli_num_rows($result);
 
 while ($row = mysqli_fetch_array($result)) {
   $tierIdDrop [] = $row['t_id'];
+  $gehegeDrop[] = $row['gehege'];
   $tierDrop [] = $row['tiername'];
   $tierartDrop [] = $row['tierart'];
 }
@@ -58,7 +59,7 @@ $countFutter = mysqli_num_rows($result);
 
 while ($row = mysqli_fetch_array($result)) {
   $futterIdDrop [] = $row['f_id'];
-  $futter [] = $row['futter'];
+  $futterDrop [] = $row['futter'];
 }
 
 ?>
@@ -71,7 +72,7 @@ while ($row = mysqli_fetch_array($result)) {
 <?php
 for ($i = 0; $i < $countTier; $i++)
 {
-  echo "<option value='$tierIdDrop[$i]'>$tierDrop[$i] - $tierartDrop[$i]</option>";
+  echo "<option value='$tierIdDrop[$i]'>$tierDrop[$i], $gehegeDrop[$i] - $tierartDrop[$i]</option>";
 }
 ?>
 </select><br>
@@ -80,7 +81,7 @@ for ($i = 0; $i < $countTier; $i++)
 <?php
 for ($i = 0; $i < $countFutter; $i++)
 {
-  echo "<option value='$futterIdDrop[$i]'>$futter[$i]</option>";
+  echo "<option value='$futterIdDrop[$i]'>$futterDrop[$i]</option>";
 }
 ?>
 </select><br>
