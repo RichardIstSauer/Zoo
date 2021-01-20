@@ -14,6 +14,7 @@
 <a href="gehege.php">Gehege</a>
 <a href="gebaeude.php">Gebäude</a>
 <a href="lieferant.php">Lieferant</a>
+<a href="lieferung.php">Lieferung</a>
 <a href="tiere.php">Tiere</a>
 <a href="tierarten.php">Tierarten</a>
 <a href="futter.php">Futter</a>

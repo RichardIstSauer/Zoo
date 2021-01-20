@@ -30,13 +30,12 @@ echo"</table>";
 ?>
 
 <html>
-
 <h1>Ort hinzufügen</h1>
 <form method="post">
 <label>Ortsname: </label><br>
 <input type="text" name="ort" ></input><br>
 <label>PLZ: </label><br>
-<input type="text" name="plz_ort" ></input><br><br>
+<input type="number" name="plz_ort" min="01067" max="99999"></input><br><br>
 <button type="submit" name="speichern_ort" >Speichern</button> 
 </form>
 

@@ -58,7 +58,7 @@ while ($row = mysqli_fetch_array($result)) {
 <label>Geburtsdatum: </label><br>
 <input type="date" name="gebdat" ></input><br>
 <label>Telefonnummer:  </label><br>
-<input type="text" name="telefonnummer" ></input><br>
+<input type="number" name="telefonnummer" min="1" max="99999999999999999"></input><br>
 <label>Adresse: </label><br>
 <input type="text" name="adresse" ></input><br>
 <label>PLZ: </label><br>

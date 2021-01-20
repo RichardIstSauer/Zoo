@@ -55,7 +55,7 @@ while ($row = mysqli_fetch_array($result)) {
 <label>Ansprechpartner: </label><br>
 <input type="text" name="ansprechpartner" ></input><br>
 <label>Telefonnummer: </label><br>
-<input type="text" name="telefonnummerLieferant" ></input><br>
+<input type="number" name="telefonnummerLieferant" min="1" max="99999999999999999" ></input><br>
 <label>Adresse:  </label><br>
 <input type="text" name="adresseLieferant" ></input><br>
 <label>PLZ: </label><br>
