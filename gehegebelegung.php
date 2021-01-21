@@ -2,6 +2,7 @@
 include "connection.php";
 include "navbar.php";
 echo "<link rel='stylesheet' href='styles.css'>";
+echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
 echo "<script> if ( window.history.replaceState ) {window.history.replaceState( null, null, window.location.href ); } </script>";
 
 echo "<div class=wrapper>";
@@ -17,7 +18,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo"<table style='width: 30%'><tr><th>Tiername</th><th>Tierart</th><th>Gehege</th></tr>";
+echo"<table><tr><th>Tiername</th><th>Tierart</th><th>Gehege</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {

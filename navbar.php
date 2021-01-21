@@ -6,7 +6,6 @@
 
 <body>
 
-<div class="nav">
 <a href="index.php">Home</a>
 <a href="pfleger.php">Pfleger</a>
 <a href="ort.php">Ort</a>
@@ -21,7 +20,7 @@
 <a href="tierarten.php">Tierarten</a>
 <a href="futter.php">Futter</a>
 <a href="futterplan.php">Futterplan</a>
-</div>
+
 
 
 </body>

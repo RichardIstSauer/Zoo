@@ -2,6 +2,7 @@
 include "connection.php";
 include "navbar.php";
 echo "<link rel='stylesheet' href='styles.css'>";
+echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
 ?>
 
 <html>
