@@ -1,30 +1,57 @@
-<html>
-<head>
-<link rel='stylesheet' href='styles.css'>
-
-</head>
-
-<body>
-
-<a href="index.php">Home</a>
-<a href="pfleger.php">Pfleger</a>
-<a href="ort.php">Ort</a>
-<a href="revier.php">Revier</a>
-<a href="betreuung.php">Revier-Betreuung</a>
-<a href="gehege.php">Gehege</a>
-<a href="gehegebelegung.php">Gehege-Belegung</a>
-<a href="gebaeude.php">Gebäude</a>
-<a href="lieferant.php">Lieferant</a>
-<a href="lieferung.php">Lieferung</a>
-<a href="tiere.php">Tiere</a>
-<a href="tierarten.php">Tierarten</a>
-<a href="futter.php">Futter</a>
-<a href="futterplan.php">Futterplan</a>
-
-
-
-</body>
-
-
-
-</html>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.php">Zoo Rheine</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pfleger.php">Pfleger</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="ort.php">Ort</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="revier.php">Revier</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="betreuung.php">Revier-Betreuung</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="gehege.php">Gehege</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="gehegebelegung.php">Gehege-Belegung</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="gebaeude.php">Gebäude</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="lieferant.php">Lieferant</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="lieferung.php">Lieferung</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tiere.php">Tiere</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tierarten.php">Tierarten</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="futter.php">Futter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="futterplan.php">Futterplan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="extras.php">Extras</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

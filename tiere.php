@@ -1,11 +1,11 @@
 <?php
 include "connection.php";
 include "navbar.php";
-echo "<link rel='stylesheet' href='styles.css'>";
 echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css'>";
 echo "<script> if ( window.history.replaceState ) {window.history.replaceState( null, null, window.location.href ); } </script>";
 
-echo "<div class=wrapper>";
+echo "<div class=container>";
 echo "<h1>Tiere</h1>";
 $query = "SELECT tiername, tierart, reviername, gehege.gehege, geschlecht, gebdat, abgabedatum FROM tier, tierart, revier, gehege WHERE tier.art_id=tierart.art_id AND tier.r_id=revier.r_id AND tier.g_id=gehege.g_id";
 $result = mysqli_query($conn, $query);
@@ -22,11 +22,14 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo"<table><tr><th>Name</th><th>Tierart</th><th>Revier</th><th>Gehege</th><th>Geschlecht</th><th>Geburtsdatum</th><th>Abgabedatum</th></tr>";
+echo"<table class='table table-bordered'><tr><th scope='col'>Nr.</th><th>Name</th><th>Tierart</th><th>Revier</th><th>Gehege</th><th>Geschlecht</th><th>Geburtsdatum</th><th>Abgabedatum</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {
+  $number = $i;
+  $number++;
   echo"<tr>";
+  echo "<th scope='row'>$number</th>";
   echo "<td>$tiername[$i]</td>";
   echo "<td>$tierart[$i]</td>";
   echo "<td>$revier[$i]</td>";

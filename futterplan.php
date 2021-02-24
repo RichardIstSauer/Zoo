@@ -1,11 +1,11 @@
 <?php
 include "connection.php";
 include "navbar.php";
-echo "<link rel='stylesheet' href='styles.css'>";
 echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css'>";
 echo "<script> if ( window.history.replaceState ) {window.history.replaceState( null, null, window.location.href ); } </script>";
 
-echo "<div class=wrapper>";
+echo "<div class=container>";
 echo "<h1>Futterplan</h1>";
 $query = "SELECT tier.tiername, tierart.tierart, revier.reviername, gehege.gehege, futter.futter, fuetterung.menge, fuetterung.einheit, fuetterung.uhrzeit, fuetterung.wochentag FROM revier, gehege, tier, fuetterung, tierart, futter WHERE fuetterung.t_id=tier.t_id AND revier.r_id=tier.r_id AND gehege.g_id=tier.g_id AND tier.art_id=tierart.art_id AND futter.f_id=fuetterung.f_id";
 $result = mysqli_query($conn, $query);
@@ -24,11 +24,14 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo"<table><tr><th>Tiername</th><th>Tierart</th><th>Revier</th><th>Gehege</th><th>Futter</th><th>Menge</th><th>Einheit</th></th><th>Uhrzeit</th></th><th>Wochentag</th></tr>";
+echo"<table class='table table-bordered'><tr><th scope='col'>Nr.</th><th>Tiername</th><th>Tierart</th><th>Revier</th><th>Gehege</th><th>Futter</th><th>Menge</th><th>Einheit</th></th><th>Uhrzeit</th></th><th>Wochentag</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {
+  $number = $i;
+  $number++;
   echo"<tr>";
+  echo "<th scope='row'>$number</th>";
   echo "<td>$tier[$i]</td>";
   echo "<td>$tierart[$i]</td>";
   echo "<td>$revier[$i]</td>";
