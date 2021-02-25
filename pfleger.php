@@ -7,7 +7,7 @@ echo "<script> if ( window.history.replaceState ) {window.history.replaceState( 
 
 echo "<div class=container>";
 echo "<h1>Pfleger</h1>";
-$query = "SELECT `vorname`,`nachname`,`geburtsdatum`,`adresse`,`telefonnummer`,`plz` FROM `pfleger`";
+$query = "SELECT  vorname, nachname, geburtsdatum, adresse, telefonnummer, plz FROM pfleger";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
 
