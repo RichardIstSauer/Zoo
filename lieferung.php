@@ -7,13 +7,14 @@ echo "<script> if ( window.history.replaceState ) {window.history.replaceState( 
 
 echo "<div class=container>";
 echo "<h1>Lieferung</h1>";
-$query = "SELECT futter.futter, lieferant.lieferant, lieferung.liefdat, lieferung.menge, lieferung.einheit FROM futter, lieferant, lieferung WHERE lieferung.f_id=futter.f_id AND lieferant.l_id=lieferung.l_id;";
+$query = "SELECT lieferung.lief_id, futter.futter, lieferant.lieferant, lieferung.liefdat, lieferung.menge, lieferung.einheit FROM futter, lieferant, lieferung WHERE lieferung.f_id=futter.f_id AND lieferant.l_id=lieferung.l_id;";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
 
 while ($row = mysqli_fetch_array($result)) {
   $futter[] = $row['futter'];
   $lieferant[] = $row['lieferant'];
+  $lieferungsID[] = $row['lief_id'];
   $liefdat[] = $row['liefdat'];
   $menge[] = $row['menge'];
   $einheit[] = $row['einheit'];
@@ -32,6 +33,7 @@ for ($i = 0; $i < $count; $i++) {
   echo "<td>$liefdat[$i]</td>";
   echo "<td>$menge[$i]</td>";
   echo "<td>$einheit[$i]</td>";
+  echo "<td><a href='?delete=$lieferungsID[$i]' class='btn btn-danger'>Löschen</a></td>";
   echo "</tr>";
 }
 echo "</table>";
@@ -60,33 +62,33 @@ while ($row = mysqli_fetch_array($result)) {
 
 <h1>Lieferung hinzufügen</h1>
 <form method="post">
-  <label>Futter:</label><br>
-  <select name="futterSelect">
+  <label class="form-label">Futter:</label><br>
+  <select class="form-control" name="futterSelect">
     <?php
     for ($i = 0; $i < $countFutter; $i++) {
       echo "<option value='$futterIdDrop[$i]'>$futterDrop[$i]</option>";
     }
     ?>
   </select><br>
-  <label>Lieferant: </label><br>
-  <select name="lieferantSelect">
+  <label class="form-label">Lieferant: </label><br>
+  <select class="form-control" name="lieferantSelect">
     <?php
     for ($i = 0; $i < $countLieferant; $i++) {
       echo "<option value='$lieferantIdDrop[$i]'>$lieferantDrop[$i]</option>";
     }
     ?>
   </select><br>
-  <label>Lieferungsdatum: </label><br>
-  <input type="date" name="lieferungsdatum"></input><br>
-  <label>Menge: </label><br>
-  <input type="number" name="menge" min="1" max="10000"></input><br>
-  <label>Einheit: </label><br>
-  <select name=einheit>
+  <label class="form-label">Lieferungsdatum: </label><br>
+  <input class="form-control" type="date" name="lieferungsdatum"></input><br>
+  <label class="form-label">Menge: </label><br>
+  <input class="form-control" type="number" name="menge" min="1" max="10000"></input><br>
+  <label class="form-label">Einheit: </label><br>
+  <select class="form-control" name=einheit>
     <option value="mg">mg</option>
     <option value="g">g</option>
     <option value="kg">kg</option>
-  </select><br><br>
-  <button type="submit" name="speichern">Speichern</button>
+  </select><br>
+  <button class="btn btn-primary" type="submit" name="speichern">Speichern</button>
 </form>
 
 </html>
@@ -97,9 +99,22 @@ if (isset($_POST["speichern"])) {
     $sql = "INSERT INTO lieferung (f_id, l_id, liefdat, menge, einheit) VALUES ('$_POST[futterSelect]','$_POST[lieferantSelect]','$_POST[lieferungsdatum]','$_POST[menge]','$_POST[einheit]')";
     if ($conn->query($sql) == FALSE) {
       echo "Fehler beim Einfügen: " . $conn->error;
+    } else {
+      echo "<meta http-equiv='refresh' content='0'>";
     }
   } else {
     echo "Fehler beim Einfügen: Einige Eingabefelder sind leer";
+  }
+}
+
+if (isset($_GET["delete"])) {
+  $id = $_GET["delete"];
+  $sql = "DELETE FROM lieferung WHERE lief_id=$id";
+  if ($conn->query($sql) == FALSE) {
+
+    echo "Fehler beim Löschen: " . $conn->error;
+  } else {
+    echo '<meta http-equiv="refresh" content="0;url=lieferung.php" />';
   }
 }
 

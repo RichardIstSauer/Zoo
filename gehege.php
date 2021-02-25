@@ -7,12 +7,13 @@ echo "<script> if ( window.history.replaceState ) {window.history.replaceState( 
 
 echo "<div class=container>";
 echo "<h1>Gehege</h1>";
-$query = "SELECT gehege.gehege, gebaeude.gebaeude FROM gehege, gebaeude WHERE gebaeude.geb_id = gehege.geb_id";
+$query = "SELECT gehege.g_id, gehege.gehege, gebaeude.gebaeude FROM gehege, gebaeude WHERE gebaeude.geb_id = gehege.geb_id";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
 
 
 while ($row = mysqli_fetch_array($result)) {
+  $gehegeID[] = $row['g_id'];
   $gehege[] = $row['gehege'];
   $gebaeude[] = $row['gebaeude'];
 }
@@ -27,6 +28,7 @@ for ($i = 0; $i < $count; $i++) {
   echo "<th scope='row'>$number</th>";
   echo "<td>$gehege[$i]</td>";
   echo "<td>$gebaeude[$i]</td>";
+  echo "<td><a href='?delete=$gehegeID[$i]' class='btn btn-danger'>Löschen</a></td>";
   echo "</tr>";
 }
 echo "</table>";
@@ -45,17 +47,17 @@ while ($row = mysqli_fetch_array($result)) {
 <html>
 <h1>Gehege hinzufügen</h1>
 <form method="post">
-  <label>Gehege: </label><br>
-  <input type="text" name="gehegeName"></input><br><br>
-  <label>Gebäude: </label><br>
-  <select name=gebaeudeName>
+  <label class="form-label">Gehege: </label><br>
+  <input class="form-control" type="text" name="gehegeName"></input><br>
+  <label class="form-label">Gebäude: </label><br>
+  <select class="form-control" name=gebaeudeName>
     <?php
     for ($i = 0; $i < $count; $i++) {
       echo "<option value='$gebaeudeIdDrop[$i]'>$gebaeudeDrop[$i]</option>";
     }
     ?>
   </select><br><br>
-  <button name="speichern">Speichern</button>
+  <button class="btn btn-primary" name="speichern">Speichern</button>
 </form>
 
 </html>
@@ -66,9 +68,23 @@ if (isset($_POST["speichern"])) {
     $sql = "INSERT INTO gehege (gehege, gehege.geb_id) VALUES ('$_POST[gehegeName]', '$_POST[gebaeudeName]')";
     if ($conn->query($sql) == FALSE) {
       echo "Fehler beim Einfügen: " . $conn->error;
+    } else {
+      echo "<meta http-equiv='refresh' content='0'>";
     }
   } else {
     echo "Fehler beim Einfügen: Einige der Eingabefelder sind leer";
+  }
+}
+
+
+if (isset($_GET["delete"])) {
+  $id = $_GET["delete"];
+  $sql = "DELETE FROM gehege WHERE g_id=$id";
+  if ($conn->query($sql) == FALSE) {
+
+    echo "Fehler beim Löschen: " . $conn->error;
+  } else {
+    echo '<meta http-equiv="refresh" content="0;url=gehege.php" />';
   }
 }
 echo "</div>";

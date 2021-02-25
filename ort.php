@@ -18,7 +18,7 @@ while ($row = mysqli_fetch_array($result)) {
 
 
 echo "<div class='row'>";
-echo "<table class='table'><tr><th scope='col'>Nr.</th><th>Ort</th><th>PLZ</th></th><th class='actions' colspan='2'>Aktionen</th></tr>";
+echo "<table class='table'><tr><th scope='col'>Nr.</th><th>Ort</th><th>PLZ</th></tr>";
 
 for ($i = 0; $i < $count; $i++) {
   $number = $i;

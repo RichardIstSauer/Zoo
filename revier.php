@@ -7,27 +7,28 @@ echo "<script> if ( window.history.replaceState ) {window.history.replaceState( 
 
 echo "<div class=container>";
 echo "<h1>Revier</h1>";
-$query = "SELECT `reviername` FROM `revier`";
+$query = "SELECT * FROM revier";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
 
 while ($row = mysqli_fetch_array($result)) {
+  $revierID[] = $row['r_id'];
   $revier[] = $row['reviername'];
 }
 
 
-echo"<table class='table'><tr><th scope='col'>Nr.</th><th>Revier</th></tr>";
+echo "<table class='table'><tr><th scope='col'>Nr.</th><th>Revier</th></tr>";
 
-for ($i = 0; $i < $count; $i++)
-{
+for ($i = 0; $i < $count; $i++) {
   $number = $i;
   $number++;
-  echo"<tr>";
+  echo "<tr>";
   echo "<th scope='row'>$number</th>";
   echo "<td>$revier[$i]</td>";
-  echo"</tr>";
+  echo "<td><a href='?delete=$revierID[$i]' class='btn btn-danger'>Löschen</a></td>";
+  echo "</tr>";
 }
-echo"</table>";
+echo "</table>";
 
 ?>
 
@@ -35,32 +36,42 @@ echo"</table>";
 
 <h1>Revier hinzufügen</h1>
 <form method="post">
-<label>Reviername: </label><br>
-<input type="text" name="reviername" ></input><br><br>
-<button type="submit" name="speichern" >Speichern</button> 
+  <label class="form-label">Reviername: </label><br>
+  <input class="form-control" type="text" name="reviername"></input><br>
+  <button class="btn btn-primary" type="submit" name="speichern">Speichern</button>
 </form>
 
 
 </html>
 
 <?php
-if (isset($_POST["speichern"]))
-{
-  if (!empty($_POST['reviername']))
-  {
+if (isset($_POST["speichern"])) {
+  if (!empty($_POST['reviername'])) {
     $sql = "INSERT INTO revier (reviername) VALUES ('$_POST[reviername]')";
-    if ($conn->query($sql) == FALSE)
-    {
-    echo "Fehler beim Einfügen: " . $conn->error;
+    if ($conn->query($sql) == FALSE) {
+      echo "Fehler beim Einfügen: " . $conn->error;
+    } else {
+      echo "<meta http-equiv='refresh' content='0'>";
     }
-  }
-
-  else
-  {
+  } else {
     echo "Fehler beim Einfügen: Einige der Eingabefelder sind leer";
   }
-  
 }
+
+
+
+if (isset($_GET["delete"])) {
+  $id = $_GET["delete"];
+  $sql = "DELETE FROM revier WHERE r_id=$id";
+  if ($conn->query($sql) == FALSE) {
+
+    echo "Fehler beim Löschen: " . $conn->error;
+  } else {
+    echo '<meta http-equiv="refresh" content="0;url=revier.php" />';
+  }
+}
+
+
 
 echo "</div>"
 ?>

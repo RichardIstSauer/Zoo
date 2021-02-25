@@ -7,11 +7,12 @@ echo "<script> if ( window.history.replaceState ) {window.history.replaceState( 
 
 echo "<div class=container>";
 echo "<h1>Gebäude</h1>";
-$query = "SELECT `gebaeude` FROM `gebaeude`";
+$query = "SELECT * FROM gebaeude";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
 
 while ($row = mysqli_fetch_array($result)) {
+  $gebaeudeID[] = $row['geb_id'];
   $gebaeude[] = $row['gebaeude'];
 }
 
@@ -24,6 +25,7 @@ for ($i = 0; $i < $count; $i++) {
   echo "<tr>";
   echo "<th scope='row'>$number</th>";
   echo "<td>$gebaeude[$i]</td>";
+  echo "<td><a href='?delete=$gebaeudeID[$i]' class='btn btn-danger'>Löschen</a></td>";
   echo "</tr>";
 }
 echo "</table>";
@@ -34,9 +36,9 @@ echo "</table>";
 
 <h1>Gebäude hinzufügen</h1>
 <form method="post">
-  <label>Gebäude: </label><br>
-  <input type="text" name="gebaeudeName"></input><br><br>
-  <button type="submit" name="speichern">Speichern</button>
+  <label class="form-label">Gebäude: </label><br>
+  <input class="form-control" type="text" name="gebaeudeName"></input><br><br>
+  <button class="btn btn-primary" type="submit" name="speichern">Speichern</button>
 </form>
 
 
@@ -48,10 +50,25 @@ if (isset($_POST["speichern"])) {
     $sql = "INSERT INTO gebaeude (gebaeude) VALUES ('$_POST[gebaeudeName]')";
     if ($conn->query($sql) == FALSE) {
       echo "Fehler beim Einfügen: " . $conn->error;
+    } else {
+      echo "<meta http-equiv='refresh' content='0'>";
     }
   } else {
     echo "Fehler beim Einfügen: Einige Eingabefelder sind leer";
   }
 }
+
+
+if (isset($_GET["delete"])) {
+  $id = $_GET["delete"];
+  $sql = "DELETE FROM gebaeude WHERE geb_id=$id";
+  if ($conn->query($sql) == FALSE) {
+
+    echo "Fehler beim Löschen: " . $conn->error;
+  } else {
+    echo '<meta http-equiv="refresh" content="0;url=gebaeude.php" />';
+  }
+}
+
 echo "</div>"
 ?>
