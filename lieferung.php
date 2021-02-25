@@ -17,35 +17,32 @@ while ($row = mysqli_fetch_array($result)) {
   $liefdat[] = $row['liefdat'];
   $menge[] = $row['menge'];
   $einheit[] = $row['einheit'];
-  
 }
 
 
-echo"<table class='table table-bordered'><tr><th scope='col'>Nr.</th><th>Futter</th><th>Lieferant</th><th>Lieferungsdatum</th><th>Menge</th><th>Einheit</th></tr>";
+echo "<table class='table table-bordered'><tr><th scope='col'>Nr.</th><th>Futter</th><th>Lieferant</th><th>Lieferungsdatum</th><th>Menge</th><th>Einheit</th></tr>";
 
-for ($i = 0; $i < $count; $i++)
-{
+for ($i = 0; $i < $count; $i++) {
   $number = $i;
   $number++;
-  echo"<tr>";
+  echo "<tr>";
   echo "<th scope='row'>$number</th>";
   echo "<td>$futter[$i]</td>";
   echo "<td>$lieferant[$i]</td>";
   echo "<td>$liefdat[$i]</td>";
   echo "<td>$menge[$i]</td>";
   echo "<td>$einheit[$i]</td>";
-  echo"</tr>";
+  echo "</tr>";
 }
-echo"</table>";
+echo "</table>";
 
 $query = "SELECT * FROM lieferant";
 $result = mysqli_query($conn, $query);
 $countLieferant = mysqli_num_rows($result);
 
 while ($row = mysqli_fetch_array($result)) {
-  $lieferantDrop [] = $row['lieferant'];
-  $lieferantIdDrop [] = $row['l_id'];
-  
+  $lieferantDrop[] = $row['lieferant'];
+  $lieferantIdDrop[] = $row['l_id'];
 }
 
 $query = "SELECT * FROM futter";
@@ -53,9 +50,8 @@ $result = mysqli_query($conn, $query);
 $countFutter = mysqli_num_rows($result);
 
 while ($row = mysqli_fetch_array($result)) {
-  $futterDrop [] = $row['futter'];
-  $futterIdDrop [] = $row['f_id'];
-  
+  $futterDrop[] = $row['futter'];
+  $futterIdDrop[] = $row['f_id'];
 }
 
 ?>
@@ -64,52 +60,45 @@ while ($row = mysqli_fetch_array($result)) {
 
 <h1>Lieferung hinzufügen</h1>
 <form method="post">
-<label>Futter:</label><br>
-<select name="futterSelect">
-<?php
-for ($i = 0; $i < $countFutter; $i++)
-{
-  echo "<option value='$futterIdDrop[$i]'>$futterDrop[$i]</option>";
-}
-?> 
-</select><br>
-<label>Lieferant: </label><br>
-<select name="lieferantSelect">
-<?php
-for ($i = 0; $i < $countLieferant; $i++)
-{
-  echo "<option value='$lieferantIdDrop[$i]'>$lieferantDrop[$i]</option>";
-}
-?> 
-</select><br>
-<label>Lieferungsdatum: </label><br>
-<input type="date" name="lieferungsdatum" ></input><br>
-<label>Menge:  </label><br>
-<input type="number" name="menge" min="1" max="10000"></input><br>
-<label>Einheit: </label><br>
-<select name=einheit>
-<option value="mg">mg</option>
-<option value="g">g</option>
-<option value="kg">kg</option>
-</select><br><br>
-<button type="submit" name="speichern" >Speichern</button> 
+  <label>Futter:</label><br>
+  <select name="futterSelect">
+    <?php
+    for ($i = 0; $i < $countFutter; $i++) {
+      echo "<option value='$futterIdDrop[$i]'>$futterDrop[$i]</option>";
+    }
+    ?>
+  </select><br>
+  <label>Lieferant: </label><br>
+  <select name="lieferantSelect">
+    <?php
+    for ($i = 0; $i < $countLieferant; $i++) {
+      echo "<option value='$lieferantIdDrop[$i]'>$lieferantDrop[$i]</option>";
+    }
+    ?>
+  </select><br>
+  <label>Lieferungsdatum: </label><br>
+  <input type="date" name="lieferungsdatum"></input><br>
+  <label>Menge: </label><br>
+  <input type="number" name="menge" min="1" max="10000"></input><br>
+  <label>Einheit: </label><br>
+  <select name=einheit>
+    <option value="mg">mg</option>
+    <option value="g">g</option>
+    <option value="kg">kg</option>
+  </select><br><br>
+  <button type="submit" name="speichern">Speichern</button>
 </form>
+
 </html>
 
 <?php
-if (isset($_POST["speichern"]))
-{
-  if (!empty($_POST['futterSelect']) && !empty($_POST['lieferantSelect']) && !empty($_POST['lieferungsdatum']) && !empty($_POST['menge']) && !empty($_POST['einheit']))
-  {
+if (isset($_POST["speichern"])) {
+  if (!empty($_POST['futterSelect']) && !empty($_POST['lieferantSelect']) && !empty($_POST['lieferungsdatum']) && !empty($_POST['menge']) && !empty($_POST['einheit'])) {
     $sql = "INSERT INTO lieferung (f_id, l_id, liefdat, menge, einheit) VALUES ('$_POST[futterSelect]','$_POST[lieferantSelect]','$_POST[lieferungsdatum]','$_POST[menge]','$_POST[einheit]')";
-    if ($conn->query($sql) == FALSE)
-    {
-    echo "Fehler beim Einfügen: " . $conn->error;
+    if ($conn->query($sql) == FALSE) {
+      echo "Fehler beim Einfügen: " . $conn->error;
     }
-  }
-
-  else
-  {
+  } else {
     echo "Fehler beim Einfügen: Einige Eingabefelder sind leer";
   }
 }

@@ -12,22 +12,21 @@ $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
 
 while ($row = mysqli_fetch_array($result)) {
-  $gebaeude [] = $row['gebaeude'];
+  $gebaeude[] = $row['gebaeude'];
 }
 
 
-echo"<table class='table table-bordered'><tr><th scope='col'>Nr.</th><th>Gebäude</th></tr>";
+echo "<table class='table table-bordered'><tr><th scope='col'>Nr.</th><th>Gebäude</th></tr>";
 
-for ($i = 0; $i < $count; $i++)
-{
+for ($i = 0; $i < $count; $i++) {
   $number = $i;
   $number++;
-  echo"<tr>";
+  echo "<tr>";
   echo "<th scope='row'>$number</th>";
   echo "<td>$gebaeude[$i]</td>";
-  echo"</tr>";
+  echo "</tr>";
 }
-echo"</table>";
+echo "</table>";
 
 ?>
 
@@ -35,31 +34,24 @@ echo"</table>";
 
 <h1>Gebäude hinzufügen</h1>
 <form method="post">
-<label>Gebäude: </label><br>
-<input type="text" name="gebaeudeName" ></input><br><br>
-<button type="submit" name="speichern" >Speichern</button> 
+  <label>Gebäude: </label><br>
+  <input type="text" name="gebaeudeName"></input><br><br>
+  <button type="submit" name="speichern">Speichern</button>
 </form>
 
 
 </html>
 
 <?php
-if (isset($_POST["speichern"]))
-{
-  if(!empty($_POST['gebaeudeName']))
-  {
+if (isset($_POST["speichern"])) {
+  if (!empty($_POST['gebaeudeName'])) {
     $sql = "INSERT INTO gebaeude (gebaeude) VALUES ('$_POST[gebaeudeName]')";
-    if ($conn->query($sql) == FALSE)
-    {
-    echo "Fehler beim Einfügen: " . $conn->error;
+    if ($conn->query($sql) == FALSE) {
+      echo "Fehler beim Einfügen: " . $conn->error;
     }
-  }
-
-  else
-  {
+  } else {
     echo "Fehler beim Einfügen: Einige Eingabefelder sind leer";
   }
-  
 }
 echo "</div>"
 ?>

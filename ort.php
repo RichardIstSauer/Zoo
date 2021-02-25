@@ -18,21 +18,21 @@ while ($row = mysqli_fetch_array($result)) {
 
 
 echo "<div class='row'>";
-echo"<table class='table'><tr><th scope='col'>Nr.</th><th>Ort</th><th>PLZ</th></th><th class='actions' colspan='2'>Aktionen</th></tr>";
+echo "<table class='table'><tr><th scope='col'>Nr.</th><th>Ort</th><th>PLZ</th></th><th class='actions' colspan='2'>Aktionen</th></tr>";
 
-for ($i = 0; $i < $count; $i++)
-{
+for ($i = 0; $i < $count; $i++) {
   $number = $i;
   $number++;
-  echo"<tr>";
+  echo "<tr>";
   echo "<th scope='row'>$number</th>";
   echo "<td>$ort[$i]</td>";
   echo "<td>$plz[$i]</td>";
-  echo "<td><button type='button' class='btn btn-warning'>Bearbeiten</button>
-        <button type='button' class='btn btn-danger'>Löschen</button></td>";
-  echo"</tr>";
+  echo "<td><a href='?edit=$plz[$i]' class='btn btn-warning'>Bearbeiten</a>
+        <a href='?delete=$plz[$i]' class='btn btn-danger'>Löschen</a>";
+
+  echo "</tr>";
 }
-echo"</table>";
+echo "</table>";
 
 echo "</div>";
 
@@ -44,7 +44,7 @@ echo "</div>";
   <form method="post">
     <div class="mb-3">
       <label class="form-label">Ortsname</label>
-      <input type="text" class="form-control" name="ort">
+      <input type="text" class="form-control" value="<?php echo $_POST['ort_edit']?>" name="ort">
     </div>
     <div class="mb-3">
       <label class="form-label">PLZ</label>
@@ -59,22 +59,45 @@ echo "</div>";
 
 
 <?php
-if (isset($_POST["speichern"]))
-{
-  if (!empty($_POST['ort']) && !empty($_POST['plz_ort']))
-  {
+if (isset($_POST["speichern"])) {
+  if (!empty($_POST['ort']) && !empty($_POST['plz_ort'])) {
     $sql = "INSERT INTO ort (ort, plz) values ('$_POST[ort]','$_POST[plz_ort]')";
-    if ($conn->query($sql) == FALSE)
-    {
-    echo "Fehler beim Einfügen: " . $conn->error;
+    if ($conn->query($sql) == FALSE) {
+      echo "Fehler beim Einfügen: " . $conn->error;
+    } else {
+      echo "<meta http-equiv='refresh' content='0'>";
     }
-  }
-  else
-  {
+  } else {
     echo "Fehler beim Einfügen: Einige der Eingabefelder sind leer";
   }
- 
 }
+
+if (isset($_GET["delete"])) {
+  $id = $_GET["delete"];
+  $sql = "DELETE FROM ort WHERE plz=$id";
+  if ($conn->query($sql) == FALSE) {
+
+    echo "Fehler beim Löschen: " . $conn->error;
+  } else {
+    echo '<meta http-equiv="refresh" content="0;url=ort.php" />';
+  }
+}
+
+
+if (isset($_GET["edit"])) {
+  $id = $_GET["edit"];
+  $query = "SELECT * FROM ort WHERE plz=$id";
+  $result = mysqli_query($conn, $query);
+  if($result->num_rows){
+    $row = $result->fetch_array();
+    $_POST['ort_edit'] = $row['ort'];
+    $plz_edit = $row['plz'];
+  
+  }
+
+}
+
+
 
 
 echo "</div>";
