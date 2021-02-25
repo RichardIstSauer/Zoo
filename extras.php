@@ -9,6 +9,7 @@ echo "<div class=container>";
 echo "<h1 class='mb-3'>Extras</h1>";
 
 include "9uhr.php";
+include "welchestierbekommt.php";
 include "wievieletiere.php";
 include "wievielfutter.php";
 include "welchetierebetreut.php";

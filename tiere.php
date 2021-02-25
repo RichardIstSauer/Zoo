@@ -22,7 +22,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo"<table class='table table-bordered'><tr><th scope='col'>Nr.</th><th>Name</th><th>Tierart</th><th>Revier</th><th>Gehege</th><th>Geschlecht</th><th>Geburtsdatum</th><th>Abgabedatum</th></tr>";
+echo"<table class='table'><tr><th scope='col'>Nr.</th><th>Name</th><th>Tierart</th><th>Revier</th><th>Gehege</th><th>Geschlecht</th><th>Geburtsdatum</th><th>Abgabedatum</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {
