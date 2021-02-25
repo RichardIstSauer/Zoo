@@ -1,5 +1,5 @@
 <?php
-echo "<h2 class=' '>Wie viele Tiere sind in Gehege x?</h2>";
+echo "<h2>Wie viele Tiere sind in Gehege x?</h2>";
 
 
 $query = "SELECT * FROM gehege";
