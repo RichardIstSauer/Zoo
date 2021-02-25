@@ -27,9 +27,7 @@ for ($i = 0; $i < $count; $i++) {
   echo "<th scope='row'>$number</th>";
   echo "<td>$ort[$i]</td>";
   echo "<td>$plz[$i]</td>";
-  echo "<td><a href='?edit=$plz[$i]' class='btn btn-warning'>Bearbeiten</a>
-        <a href='?delete=$plz[$i]' class='btn btn-danger'>Löschen</a>";
-
+  echo "<td><a href='?delete=$plz[$i]' class='btn btn-danger'>Löschen</a></td>";
   echo "</tr>";
 }
 echo "</table>";
@@ -44,7 +42,7 @@ echo "</div>";
   <form method="post">
     <div class="mb-3">
       <label class="form-label">Ortsname</label>
-      <input type="text" class="form-control" value="<?php echo $_POST['ort_edit']?>" name="ort">
+      <input type="text" class="form-control" name="ort">
     </div>
     <div class="mb-3">
       <label class="form-label">PLZ</label>
@@ -84,18 +82,6 @@ if (isset($_GET["delete"])) {
 }
 
 
-if (isset($_GET["edit"])) {
-  $id = $_GET["edit"];
-  $query = "SELECT * FROM ort WHERE plz=$id";
-  $result = mysqli_query($conn, $query);
-  if($result->num_rows){
-    $row = $result->fetch_array();
-    $_POST['ort_edit'] = $row['ort'];
-    $plz_edit = $row['plz'];
-  
-  }
-
-}
 
 
 

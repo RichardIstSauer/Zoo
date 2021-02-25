@@ -33,7 +33,7 @@ $result = mysqli_query($conn, $query);
 $countTabelle = mysqli_num_rows($result);
 
 while ($row = mysqli_fetch_array($result)) {
-    $gehege[] = $row['gehege'];
+    $gehegeTabelle[] = $row['gehege'];
     $tieranzahl[] = $row['COUNT(tier.t_id)'];
 }
 
@@ -45,7 +45,7 @@ for ($i = 0; $i < $countTabelle; $i++) {
     $number++;
     echo "<tr>";
     echo "<th scope='row'>$number</th>";
-    echo "<td>$gehege[$i]</td>";
+    echo "<td>$gehegeTabelle[$i]</td>";
     echo "<td>$tieranzahl[$i]</td>";
     echo "</tr>";
 }
