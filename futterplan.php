@@ -24,7 +24,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo "<table class='table table-bordered'><tr><th scope='col'>Nr.</th><th>Tiername</th><th>Tierart</th><th>Revier</th><th>Gehege</th><th>Futter</th><th>Menge</th><th>Einheit</th></th><th>Uhrzeit</th></th><th>Wochentag</th></tr>";
+echo "<table class='table'><tr><th scope='col'>Nr.</th><th>Tiername</th><th>Tierart</th><th>Revier</th><th>Gehege</th><th>Futter</th><th>Menge</th><th>Einheit</th></th><th>Uhrzeit</th></th><th>Wochentag</th></tr>";
 
 for ($i = 0; $i < $count; $i++) {
   $number = $i;

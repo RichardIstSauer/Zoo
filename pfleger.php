@@ -21,7 +21,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 
-echo"<table class='table table-bordered'><tr><th scope='col'>Nr.</th><th>Vorname</th><th>Nachname</th><th>Geburtsdatum</th><th>Telefonnummer</th><th>Adresse</th><th>PLZ</th></tr>";
+echo"<table class='table'><tr><th scope='col'>Nr.</th><th>Vorname</th><th>Nachname</th><th>Geburtsdatum</th><th>Telefonnummer</th><th>Adresse</th><th>PLZ</th></tr>";
 
 for ($i = 0; $i < $count; $i++)
 {
