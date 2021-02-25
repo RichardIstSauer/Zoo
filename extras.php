@@ -6,19 +6,15 @@ echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-
 echo "<script> if ( window.history.replaceState ) {window.history.replaceState( null, null, window.location.href ); } </script>";
 
 echo "<div class=container>";
-echo "<h1>Extras</h1>";
+echo "<h1 class='mb-3'>Extras</h1>";
 
-include"9uhr.php";
-
-$query = "SELECT * FROM gebaeude";
-$result = mysqli_query($conn, $query);
-$count = mysqli_num_rows($result);
-
-while ($row = mysqli_fetch_array($result))
-{
-  $gebaeudeDrop[] = $row['gebaeude'];
-  $gebaeudeIdDrop[] = $row['geb_id'];
-}
+include "9uhr.php";
+include "wievieletiere.php";
+include "wievielfutter.php";
+include "welchetierebetreut.php";
+include "welchetiereerhalten.php";
+include "welchegehegebetreut.php";
+include "wiesiehtderfutterplan.php";
 
 echo "</div>";
 
